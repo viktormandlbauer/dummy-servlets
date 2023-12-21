@@ -6,6 +6,7 @@ target/
 .project
 .classpath
 .factorypath
+.idea
 MANIFEST.MF
 
 # MacOS system files
