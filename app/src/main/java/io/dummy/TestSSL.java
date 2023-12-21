@@ -40,11 +40,6 @@ public class TestSSL extends HttpServlet {
         response.getWriter().append("<b>Enabled Protocols: </b>").append(String.join(", ", socket.getEnabledProtocols())).append("<br>");
         response.getWriter().append("<b>Enabled Cipher Suites: </b>").append(String.join(", ", socket.getEnabledCipherSuites())).append("<br>");
 
-        // List if peer authentication is required
-        response.getWriter().append("<h2>Peer Authentication</h2>");
-        response.getWriter().append("<b>Need Client Authentication: </b>").append(String.valueOf(socket.getNeedClientAuth())).append("<br>");
-        response.getWriter().append("<b>Want Client Authentication: </b>").append(String.valueOf(socket.getWantClientAuth())).append("<br>");
-
         // Start the handshake
         SSLSession session = socket.getSession();
 
@@ -54,6 +49,7 @@ public class TestSSL extends HttpServlet {
         response.getWriter().append("<b>Peer Port: </b>").append(String.valueOf(session.getPeerPort())).append("<br>");
         response.getWriter().append("<b>Cipher Suite: </b>").append(session.getCipherSuite()).append("<br>");
         response.getWriter().append("<b>Protocol: </b>").append(session.getProtocol()).append("<br>");
+        response.getWriter().append("<b>Session Valid: </b>").append(String.valueOf(session.isValid())).append("<br>");
 
         // List peer certificates
         response.getWriter().append("<h2>Peer Certificates</h2>");

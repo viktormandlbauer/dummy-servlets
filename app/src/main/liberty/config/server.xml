@@ -6,13 +6,25 @@
 
     <variable name="default.http.port" defaultValue="9080"/>
     <variable name="default.https.port" defaultValue="9443"/>
-    <variable name="app.context.root" defaultValue="ServletSample"/>
+    <variable name="app.context.root" defaultValue="DummyServlet"/>
 
+    <sslDefault outboundSSLRef="outboundSSLSettings"/>
 
+    <ssl id="outboundSSLSettings"
+         keyStoreRef="outboundKeyStore"
+         trustStoreRef="outboundTrustStore"
+         trustDefaultCerts="true"/>
 
-    <!-- tag::httpEndpoint[] -->
-    <httpEndpoint httpPort="${default.http.port}" 
+    <keyStore id="outboundKeyStore"
+              location="clientkeystore.p12"
+              password="password"/>
+
+    <keyStore id="outboundTrustStore"
+              location="clienttruststore.jks"
+              password="password"/>
+
+    <httpEndpoint httpPort="${default.http.port}"
     httpsPort="${default.https.port}" id="defaultHttpEndpoint"  host="*" />
-    <!-- end::httpEndpoint[] -->
+
     <webApplication id="DummyServlet" location="DummyServlet.war" contextRoot="${app.context.root}" />
 </server>
